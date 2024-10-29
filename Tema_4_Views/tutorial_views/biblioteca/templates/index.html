@@ -5,17 +5,17 @@
 
     <h2>Listado de enlaces</h2>
     <ul>
-        <li><a href="{% url 'lista_libros' %}">Libros</a></li>
+        <li><a href="{% url 'lista_libros_pepito' %}">Libros</a></li>
         <li><a href="{% url 'dame_libro' 10 %}">Ver libro 10</a></li>
     </ul>
     <ul>
         <li><a href="{% url 'dame_libros_fecha' 2001 4 %}">Libros del año 2001 y del mes Abril</a></li>
-        <li><a href="{% url 'dame_libros_biblioteca' 1 'prueba' %}">Libros Biblioteca 1 con filtro de texto</a></li>
+        <li><a href="{% url 'dame_libros_biblioteca' 13 'international' %}">Libros Biblioteca 1 con filtro de texto</a></li>
         <li><a href="{% url 'dame_libros_biblioteca' 2 'hel' %}">Libros Biblioteca 2 con filtro de texto</a></li>
         <li><a href="{% url 'dame_libros_biblioteca' 1 'pr' %}">Libros Biblioteca 1 con otro filtro de texto</a></li>
     </ul>
     <ul>
-        <li><a href="{% url 'libros_no_prestados' %}">Libros No prestados</a></li>
+        <li><a href="{% url 'libros_no_prestados'  %}">Libros No prestados</a></li>
     </ul>
 
     <ul>

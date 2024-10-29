@@ -1,0 +1,23 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Ejercicio</title>
+    </head>
+    <body>
+
+        <h1>Tarea: {{ tarea.titulo }}</h2>
+
+        <h1>Comentarios</h1>
+        {% for comentario in comentarios %}
+            <div>
+                <h2>ID comentario: {{comentario.id}}</h2>
+                <h2>Contenido: {{comentario.contenido}}</h2>
+                <h2>Autor: {{comentario.autor.nombre}}</h2>
+            </div>     
+            <hr></hr>    
+        {% endfor %}
+
+    </body>
+
+
+</html>

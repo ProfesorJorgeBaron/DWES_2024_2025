@@ -1,0 +1,92 @@
+<html>
+    <head></head>
+    <body>
+    <h1>GESTIÓN DE PROYECTOS</h1>
+
+    <h2>Listado de enlaces</h2>
+    
+    <div>
+        <h3>2-Crea una URL que muestre una lista de todos 
+            los proyectos de la aplicación 
+            con sus datos correspondientes.
+        </h3>
+        <a href="{% url 'listar_proyectos' %}">URL ejercicio 2</a>
+    </div>
+
+    <div>
+        <h3>3-Crear una URL que muestre todas las tareas 
+            que están asociadas a un proyecto, 
+            ordenadas por fecha de creación descendente.
+        </h3>
+        <a href="{% url 'listar_tareas_proyecto' 1 %}">URL ejercicio 3</a>
+    </div>
+
+    <div>
+        <h3>4-Crear una URL que muestre todos los usuarios que están asignados 
+            a una tarea ordenados por la fecha de asignación de la tarea de forma ascendente. 
+        </h3>
+        <a href="{% url 'listar_usuarios_tarea' 1%}">URL ejercicio 4</a>
+    </div>
+
+    <div>
+        <h3>5-Crear una URL que muestre todas las tareas que tengan un texto 
+            en concreto en las observaciones 
+            a la hora de asignarlas a un usuario.
+        </h3>
+        <a href="{% url 'listar_tareas_texto_usuario' 12 'prueba' %}">URL ejercicio 5</a>
+    </div>
+
+    <div>
+        <h3>6-Crear una URL que muestre todos las tareas que se han creado entre dos años 
+            y el estado sea “Completada”.
+        </h3>
+        <a href="{% url 'listar_tareas_anyos' 2023 2024 %}">URL ejercicio 6</a>
+    </div>
+
+    <div>
+        <h3>7-Crear una URL que obtenga el último usuario que ha 
+            comentado en una tarea de un proyecto en concreto.
+        </h3>
+        <a href="{% url 'ultimo_comentario_proyecto' 1 %}">URL ejercicio 7</a>
+    </div>
+
+    <div>
+        <h3>8-Crear una URL que obtenga todos los comentarios de una tarea 
+            que empiecen por la palabra que se pase en la URL y 
+            que el año del comentario sea uno en concreto.
+        </h3>
+        <a href="{% url 'listar_comentarios_filtro' 1 2023 'prueba' %}">URL ejercicio 8</a>
+    </div>
+
+    <div>
+        <h3>9-Crear una URL que obtenga todas las etiquetas 
+            que se han usado en todas las tareas de un proyecto.
+        </h3>
+        <a href="{% url 'listar_etiquetas_proyecto' 1 %}">URL ejercicio 9</a>
+    </div>
+
+    <div>
+        <h3>10 -Crear una URL que muestre todos los usuarios 
+            que no están asignados a una tarea.
+        </h3>
+        <a href="{% url 'usuarios_no_asignados' %}">URL ejercicio 10</a>
+    </div>
+
+    <div>
+        <h3>10 -Crear una URL que muestre todos los usuarios 
+            que no están asignados a una tarea.
+        </h3>
+        <a href="{% url 'usuarios_no_asignados' %}">URL ejercicio 10</a>
+    </div>
+
+    <div>
+        <h3>11 -Crear una URL que muestre todos los usuarios 
+            que no están asignados a una tarea.
+        </h3>
+        <a href="{% url 'usuarios_no_asignados' %}">URL ejercicio 10</a>
+    </div>
+
+
+
+    </body>
+</html>

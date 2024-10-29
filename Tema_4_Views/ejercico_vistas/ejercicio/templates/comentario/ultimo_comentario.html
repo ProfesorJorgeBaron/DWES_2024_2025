@@ -1,0 +1,20 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Ejercicio</title>
+    </head>
+    <body>
+
+        <h2>Proyecto: {{ comentario.tarea.proyecto.nombre }}</h2>
+        <h2>Tarea: {{ comentario.tarea.titulo }}</h2>
+        <h2>Usuario</h2>
+        <div>
+            <h3>Id_usuario: {{comentario.autor.id}}</h2>
+            <h3>Nombre: {{comentario.autor.nombre}}</h2>
+            <h3>email: {{comentario.autor.email}}</h2>
+            <h3>Password: {{comentario.autor.password}}</h2>
+            <h3>Fecha registro: {{comentario.autor.fecha_registro}}</h2>
+        </div>
+        <h2>Comentario: {{comentario.contenido}}</h2> 
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Ejercicio</title>
+    </head>
+    <body>
+
+        <h1>Proyecto: {{ proyecto.nombre }}</h2>
+
+        <h1>Etiquetas</h1>
+        {% for etiqueta in etiquetas %}
+            <div>
+                <h2>ID etiqueta: {{etiqueta.id}}</h2>
+                <h2>Nombre: {{etiqueta.nombre}}</h2>
+                <h2>Tareas Asociadas</h2>
+                <ul>
+                {% for tarea in etiqueta.tarea.all %}
+                    <li>Tarea: {{tarea.titulo}}</li>
+                {% endfor %}
+                </ul>
+            </div>     
+            <hr></hr>    
+        {% endfor %}
+
+    </body>
+
+
+</html>

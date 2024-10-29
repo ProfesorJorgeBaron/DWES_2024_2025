@@ -1,0 +1,38 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Ejercicio</title>
+    </head>
+    <body>
+        <h1>Proyectos</h1>
+        {% for proyecto in proyectos %}
+            <div>
+                <h2>Nombre: {{proyecto.nombre}}</h2>
+                <h2>Descripcion: {{proyecto.descripcion}}</h2>
+                <h2>Duracion estimada: {{proyecto.duracion_estimada}}</h2>
+                <h2>Fecha inicio: {{proyecto.fecha_inicio}}</h2>
+                <h2>Fecha fin: {{proyecto.fecha_fin}}</h2>
+                <h2>Creador: {{proyecto.creador.nombre}}
+
+
+                <h2>Colaboradores</h2>
+                <ul>
+                    {% for usuario in proyecto.colaboradores.all %}
+                        <li>Usuario: {{usuario.nombre}}</li>
+                    {%endfor%}
+                </ul>
+
+                <h2>Tareas</h2>
+                <ul>
+                    {% for tarea in proyecto.proyecto_tareas.all %}
+                        <li>Tarea: {{tarea.titulo}}</li>
+                    {%endfor%}
+                </ul>
+                
+            </div>
+        <hr></hr>
+        {% endfor %}
+    </body>
+
+
+</html>

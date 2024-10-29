@@ -52,7 +52,7 @@ def dame_libros_fecha(request,anyo_libro,mes_libro):
 #Una url que me muestre los libros que tienen el idioma del libro o español ordenados por fecha de publicación
 def dame_libros_idioma(request,idioma):
     libros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
-    libros = libros.filter(Q(idioma=idioma) | Q(idioma="ES")).order_by("fecha_publicacion")
+    libros = libros.filter(Q(idioma=idioma) | Q(idioma="ES") ).order_by("fecha_publicacion")
     
     """libros = (Libro.objects.raw("SELECT * FROM biblioteca_libro l "
                                + " JOIN biblioteca_biblioteca b ON l.biblioteca_id = b.id "   
