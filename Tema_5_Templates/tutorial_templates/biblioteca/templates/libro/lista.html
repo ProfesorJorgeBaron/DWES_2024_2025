@@ -1,0 +1,15 @@
+{% extends "principal.html" %}
+
+{% load static %}
+
+{% block link_css %}
+    <link rel="stylesheet" href="{% static 'css/estilo_libros.css' %}"
+{% endblock%}
+
+{% block contenido %}
+    {% for libro in libros_mostrar %}
+        {% include 'libro/libro.html' %}
+    {% empty %}
+        <h1>Lo sentimos pero no hay libros</h1>
+    {% endfor %}
+{% endblock %}

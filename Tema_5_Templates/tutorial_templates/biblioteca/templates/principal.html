@@ -1,0 +1,25 @@
+<html>
+    {% load static %}
+    <head>
+        <title>Mi biblioteca Online</title>
+        {% block link_css %}
+        {% endblock%}
+        <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+        
+    </head>
+    <body>
+    
+    <img src="{% static  'imagenes/imagen.png' %}" alt="Imagen de Django"> 
+    
+    <h1>BIBLIOTECA ONLINE</h1>
+
+        {% include 'estructura/menu.html' %}
+
+        
+        {% block contenido %}
+        {% endblock %}
+
+        {% include 'estructura/pie.html' %}
+
+    </body>
+</html>

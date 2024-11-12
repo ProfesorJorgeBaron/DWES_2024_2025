@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+    <h1>Cliente</h1>    
+
+    <div>
+            <h2>Nombre: {{ cliente.nombre }} </h2>  
+            <h3>Email: {{ cliente.email }}</h2>
+            {% if  cliente.puntos > 5 %}
+                Todavía te quedan muchos puntos {{ cliente.puntos }} para usar
+            {% elif cliente.puntos > 0%}
+                Te quedan pocos puntos {{ cliente.puntos }} para usar
+            {% else %}
+                Ya no tienes puntos que usar
+            {% endif %}
+    </div>
+
+    </body>
+</html>

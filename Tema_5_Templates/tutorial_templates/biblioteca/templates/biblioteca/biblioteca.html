@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+    <h1>Biblioteca</h1>    
+
+    <div>
+            <h2>Nombre: {{ biblioteca.nombre }} </h2>  
+            <h3>Email: {{ biblioteca.email }}</h2>
+            <h3>Libros</h3>
+            {% for libro in biblioteca.libros_biblioteca.all %}
+                <li>{{ libro.nombre }}</li>
+            {% endfor%}
+            
+    </div>
+
+    </body>
+</html>

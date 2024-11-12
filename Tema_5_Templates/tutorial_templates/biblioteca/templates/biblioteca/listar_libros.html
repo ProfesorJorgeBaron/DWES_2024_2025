@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+    <h1>Django girls</h1>
+
+    {% for libro in libros_mostrar %}
+        <div>
+            <h2>Nombre: {{ libro.nombre }} </h2>
+            <p>Fecha Publicacion {{ libro.fecha_publicacion }}.
+                <a href="{% url 'dame_libros_fecha' libro.fecha_publicacion.year libro.fecha_publicacion.month %}">
+                    Pulsa para ver libros del mismo año y mes
+                </a>
+            </p>
+            <h3>Idioma: {{ libro.get_idioma_display }}
+                <a href="{% url 'dame_libros_idioma' libro.idioma %}">
+                    Pulsa para ver libros del mismo idioma o Español
+                </a>
+            </h2>
+            <p>Descripcion{{ libro.descripcion }}</p>
+            <a href="{% url 'dame_libro' id_libro=libro.id %}">Pulsa para ver con más detalle</a>
+        </div>
+    {% endfor %}
+
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<div>
+    <h2>Número de Iteración: {{ forloop.counter }}
+    <h2>Nombre: {{ libro.nombre|capfirst }} </h2    >
+    <h2>Biblioteca {{ libro.biblioteca.nombre }}</h2>
+    <h2>Autores</h2>
+    <ul>
+        {% for autor in libro.autores.all %}
+            <li>{{ autor.nombre }}</li>
+        {% endfor%}
+    </ul>
+    <p>Fecha Publicacion {{ libro.fecha_publicacion|date:"d-m-Y" }}:
+        <a href="{% url 'dame_libros_fecha' libro.fecha_publicacion.year libro.fecha_publicacion.month %}">
+            Pulsa para ver libros del mismo año y mes
+        </a>
+    </p>
+    <h3>Idioma: {{ libro.get_idioma_display }}
+        <a href="{% url 'dame_libros_idioma' libro.idioma %}">
+            Pulsa para ver libros del mismo idioma o Español
+        </a>
+    </h3>
+    <h3>
+        Último cliente que se llevo el libro:
+        <a href="{% url 'ultimo_cliente_libro' libro.id %}">
+            Pulsa para ver el último cliente
+        </a>
+    </h3>    
+    <p>Descripcion{{ libro.descripcion|cut:" " }}</p>
+    <a href="{% url 'dame_libro' libro.id %}">Pulsa para ver con más detalle</a>
+</div>
