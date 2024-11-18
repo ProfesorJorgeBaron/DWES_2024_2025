@@ -1,0 +1,46 @@
+{% extends "estructura/principal.html" %}
+
+{% block cabecera_extra %}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}" ></script>
+{% endblock %}
+
+
+{% block contenido %}
+{{ formulario.media }}
+{% load django_bootstrap5 %}
+    <form action = "{% url 'libro_buscar_avanzado' %}" method = "GET"> 
+        
+        {% csrf_token %}
+
+        <div class="mb-4">
+            {% bootstrap_field formulario.textoBusqueda show_label=True %}
+        </div>
+
+        <div class="mb-4">
+            {% bootstrap_field formulario.idiomas show_label=True %}
+        </div>    
+
+        <div class="mb-4">
+            {% bootstrap_field formulario.fecha_desde show_label=True %}
+            <div class="invalid-feedback">
+                {% for error in formulario.fecha_desde.errors %} 
+                    {{ error }}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-4">
+            {% bootstrap_field formulario.fecha_hasta show_label=True %}
+            <div class="invalid-feedback">
+                {% for error in formulario.fecha_hasta.errors %} 
+                    {{ error }}
+                {% endfor %}
+            </div>
+        </div>
+
+        
+        {% bootstrap_button "Enviar" button_type="submit" button_class="btn-primary" %}
+      
+    </form> 
+{% endblock %}

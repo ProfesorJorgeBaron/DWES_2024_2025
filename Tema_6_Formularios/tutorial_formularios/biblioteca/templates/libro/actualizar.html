@@ -1,0 +1,100 @@
+{% extends "estructura/principal.html" %}
+
+{% block contenido %}
+
+{% load django_bootstrap5 %}
+<form action = "{% url 'libro_editar' libro.id %}" method = "post"> 
+    
+    {% csrf_token %} 
+
+    <div class="mb-4">
+        <label for="{{ formulario.nombre.id_for_label }}" class="form-label">{{ formulario.nombre.label }}: </label>
+        <input  name="{{ formulario.nombre.html_name }}" 
+                type="text" 
+                class="form-control {% if formulario.nombre.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+                id="{{ formulario.nombre.id_for_label }}"
+                maxlength="{{ formulario.nombre.field.max_length }}"
+                {% if formulario.nombre.field.required %}
+                    required
+                {% endif %}
+                value="{% spaceless %}
+                       {% if formulario.is_bound%}
+                            {{ formulario.nombre.value }}
+                       {% elif libro %}
+                            {{ formulario.nombre.value }}
+                       {% endif %} 
+                       {% endspaceless %}"
+        />
+        {% if formulario.nombre.help_text %}
+        <div class="form-text">
+            {{ formulario.nombre.help_text }}
+        </div>
+        {% endif %}
+        <div class="invalid-feedback">
+            {% for error in formulario.nombre.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.descripcion.id_for_label }}" class="form-label">{{ formulario.descripcion.label }}: </label>
+        <textarea name="{{ formulario.descripcion.html_name }}" 
+                  class="form-control {% if formulario.descripcion.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+                  id="{{ formulario.descripcion.id_for_label }}"
+                  >{% spaceless %}
+                        {% if formulario.is_bound%}
+                            {{ formulario.descripcion.value }}
+                        {% elif libro %}
+                            {{ formulario.descripcion.value }}
+                        {% endif %} 
+                        {% endspaceless %}</textarea>
+        <div class="invalid-feedback">
+            {% for error in formulario.descripcion.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.fecha_publicacion show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.fecha_publicacion.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label" for="{{ formulario.idioma.id_for_label }}">
+            {{formulario.idioma.label}}
+        </label>
+        <select name="{{ formulario.idioma.html_name }}" 
+            value="{{ formulario.idioma.value }}" 
+            id="{{ formulario.idioma.id_for_label }}" 
+            class="form-select {% if formulario.idioma.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" >
+            {% for widget in formulario.idioma.subwidgets %}
+                {{ widget }}
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">
+        {% for error in formulario.idioma.errors %} 
+            {{ error }}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.biblioteca show_label=True %}
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.autores show_label=True %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+
+</form> 
+
+
+{% endblock %}

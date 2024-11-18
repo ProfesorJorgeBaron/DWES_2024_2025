@@ -1,11 +1,5 @@
 {% extends "principal.html" %}
 
-{% load static %}
-
-{% block link_css %}
-    <link rel="stylesheet" href="{% static 'css/estilo_libros.css' %}"
-{% endblock%}
-
 {% block contenido %}
     {% for libro in libros_mostrar %}
         {% include 'libro/libro.html' %}

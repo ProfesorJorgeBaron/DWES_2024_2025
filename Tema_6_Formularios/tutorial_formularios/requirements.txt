@@ -1,0 +1,11 @@
+Django~=5.1.1
+django-seed~=0.3.1
+psycopg2-binary~=2.9.9
+django-debug-toolbar~=4.4.6
+django-bootstrap5~=24.3
+django-bootstrap-icons~=0.8.6
+django-jquery~=3.1.0
+django-bootstrap-datepicker-plus~=5.0.4
+django-staticfiles-moment~=2.0.0
+django-crispy-forms~=2.0
+crispy-bootstrap5~=2023.10

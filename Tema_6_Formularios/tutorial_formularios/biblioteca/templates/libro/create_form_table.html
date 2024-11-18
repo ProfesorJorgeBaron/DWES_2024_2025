@@ -1,0 +1,15 @@
+{% extends "estructura/principal.html" %}
+
+{% block contenido %}
+{% load django_bootstrap5 %}
+<form action = "{% url 'libro_create' %}" method = "post"> 
+    
+    {% csrf_token %} 
+    <table>
+        {{ formulario.as_table }} 
+    </table>
+    <button type="submit">Enviar</button>
+</form> 
+
+
+{% endblock %}
