@@ -69,7 +69,7 @@ def libro_create(request):
         #libro_creado = crear_libro_generico(formulario)
         libro_creado = crear_libro_modelo(formulario)
         if(libro_creado):
-             messages.success(request, 'Se ha creado el libro'+formulario.cleaned_data.get('nombre')+" correctamente")
+             messages.success(request, 'Se ha creado el libro '+formulario.cleaned_data.get('nombre')+" correctamente")
              return redirect("libro_lista")
         
     return render(request, 'libro/create.html',{"formulario":formulario})
@@ -188,7 +188,7 @@ def libro_buscar_avanzado(request):
                              "texto_busqueda":mensaje_busqueda})
     else:
         formulario = BusquedaAvanzadaLibroForm(None)
-    return render(request, 'libro/busqueda_avanzada.html',{"formulario":formulario})
+    return render(request, 'libro/busqueda_avanzada_datepicker.html',{"formulario":formulario})
   
 
 def libro_editar(request,libro_id):

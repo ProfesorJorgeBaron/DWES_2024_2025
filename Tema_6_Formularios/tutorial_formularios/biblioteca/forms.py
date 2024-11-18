@@ -86,7 +86,7 @@ class LibroForm(forms.Form):
 class LibroModelForm(ModelForm):   
     class Meta:
         model = Libro
-        fields = ['nombre','descripcion','fecha_publicacion','idioma','biblioteca','autores','fecha_actualizacion']
+        fields = ['nombre','descripcion','fecha_publicacion','idioma','biblioteca','autores']
         labels = {
             "nombre": ("Nombre del Libro"),
         }
@@ -95,8 +95,7 @@ class LibroModelForm(ModelForm):
             "autores":("Mantén pulsada la tecla control para seleccionar varios elementos")
         }
         widgets = {
-            "fecha_publicacion":forms.SelectDateWidget(),
-            "fecha_actualizacion":forms.SelectDateWidget()
+            "fecha_publicacion":forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
         }
         localized_fields = ["fecha_publicacion"]
     
@@ -129,7 +128,7 @@ class LibroModelForm(ModelForm):
         
         #Comprobamos que la fecha de publicación sea mayor que hoy
         fechaHoy = date.today()
-        if fechaHoy < fecha_publicacion :
+        if fechaHoy > fecha_publicacion :
              self.add_error('fecha_publicacion','La fecha de publicacion debe ser mayor a Hoy')
         
         #Comprobamos que el idioma no pueda ser en Francés si se ha seleccionado la Biblioteca de la Universidad de Sevilla
@@ -160,12 +159,14 @@ class BusquedaAvanzadaLibroForm(forms.Form):
     
     fecha_desde = forms.DateField(label="Fecha Desde",
                                 required=False,
-                                widget= forms.SelectDateWidget(years=range(1990,2023))
+                                widget= DatePickerInput()
                                 )
     
     fecha_hasta = forms.DateField(label="Fecha Desde",
                                   required=False,
-                                  widget= forms.SelectDateWidget(years=range(1990,2023))
+                                  widget= forms.DateInput(format="%Y-%m-%d", 
+                                                          attrs={"type": "date"},
+                                                          )
                                   )
     
     
