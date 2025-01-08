@@ -1,0 +1,18 @@
+{% extends "estructura/principal.html" %}
+
+{% block contenido %}
+{% load static %}
+
+{% for l in lista %}
+    <p>Lista {{ l }}</p>
+    <p>Diccionario   {{ diccionario|slice:forloop.counter|last}}</p>
+
+{% endfor %}
+<div class="row">
+    <div class="col-md-12">
+        <img src="{% static  'imagenes/biblioteca.jpg' %}" 
+        alt="Biblioteca" 
+        class="img-fluid mx-auto mx-auto d-block">
+    </div>
+</div>
+{% endblock %}
