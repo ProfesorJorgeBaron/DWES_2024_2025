@@ -209,13 +209,15 @@ class BusquedaAvanzadaLibroForm(forms.Form):
 
 class RegistroForm(UserCreationForm): 
     roles = (
+                                ("","NINGUNO"),
                                 (Usuario.CLIENTE, 'cliente'),
                                 (Usuario.BIBLIOTECARIO, 'bibliotecario'),
             )   
+    
+    ciudad = forms.CharField(required=False)
+    
     rol = forms.ChoiceField(choices=roles)  
     
-    
-    textoBusqueda = forms.CharField(required=False)
     
     class Meta:
         model = Usuario
