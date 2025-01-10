@@ -27,6 +27,19 @@
             "django": true,
             "autoStartBrowser": false,
             "program": "${workspaceFolder}/Tema_6_Formularios/tutorial_formularios/manage.py"
+        },
+
+        {
+            "name": "Django Tema 7",
+            "type": "debugpy",
+            "request": "launch",
+            "args": [
+                "runserver"
+            ],
+            "django": true,
+            "autoStartBrowser": false,
+            "program": "${workspaceFolder}/Tema_7_Sesiones_Permisos/manage.py"
         }
+
     ]
 }

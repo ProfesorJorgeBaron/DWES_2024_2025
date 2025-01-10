@@ -162,7 +162,7 @@ class BusquedaAvanzadaLibroForm(forms.Form):
                                 widget= DatePickerInput()
                                 )
     
-    fecha_hasta = forms.DateField(label="Fecha Desde",
+    fecha_hasta = forms.DateField(label="Fecha Hasta",
                                   required=False,
                                   widget= forms.DateInput(format="%Y-%m-%d", 
                                                           attrs={"type": "date"},

@@ -213,6 +213,10 @@ class RegistroForm(UserCreationForm):
                                 (Usuario.BIBLIOTECARIO, 'bibliotecario'),
             )   
     rol = forms.ChoiceField(choices=roles)  
+    
+    
+    textoBusqueda = forms.CharField(required=False)
+    
     class Meta:
         model = Usuario
         fields = ('username', 'email', 'password1', 'password2','rol')

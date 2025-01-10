@@ -27,7 +27,7 @@ def libro_create_sencillo(request):
             except Exception as error:
                 print(error)
     
-    return render(request, 'libro/create.html',{"formulario":formulario})  
+    return render(request, 'libro/create_Bootstrap_Library.html',{"formulario":formulario})  
 
 #Esta funcion es igual que la anterior pero con el
 # código estructurado de otra forma
@@ -44,7 +44,7 @@ def libro_create_sencillo2(request):
     else:
         formulario = LibroModelForm()
           
-    return render(request, 'libro/create.html',{"formulario":formulario})  
+    return render(request, 'libro/create_Bootstrap_Library.html',{"formulario":formulario})  
   
    
 def libro_create(request):
@@ -72,7 +72,7 @@ def libro_create(request):
              messages.success(request, 'Se ha creado el libro '+formulario.cleaned_data.get('nombre')+" correctamente")
              return redirect("libro_lista")
         
-    return render(request, 'libro/create.html',{"formulario":formulario})
+    return render(request, 'libro/create_Bootstrap_Library.html',{"formulario":formulario})
 
 
 def crear_libro_generico(formulario):
@@ -140,14 +140,13 @@ def libro_buscar(request):
         return redirect("index")
 
 def libro_buscar_avanzado(request):
-
+    QSlibros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
     if(len(request.GET) > 0):
         formulario = BusquedaAvanzadaLibroForm(request.GET)
-        if formulario.is_valid():
-            
+        if formulario.is_valid():      
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
             
-            QSlibros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
+           
             
             #obtenemos los filtros
             textoBusqueda = formulario.cleaned_data.get('textoBusqueda')
@@ -186,7 +185,10 @@ def libro_buscar_avanzado(request):
             return render(request, 'libro/lista_busqueda.html',
                             {"libros_mostrar":libros,
                              "texto_busqueda":mensaje_busqueda})
+        else:
+            libros = QSlibros.all()    
     else:
+        libros = QSlibros.all()
         formulario = BusquedaAvanzadaLibroForm(None)
     return render(request, 'libro/busqueda_avanzada_datepicker.html',{"formulario":formulario})
   
