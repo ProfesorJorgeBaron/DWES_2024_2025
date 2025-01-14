@@ -320,7 +320,7 @@ def prestamo_crear_generico_con_request(request):
     return render(request, 'prestamo/create.html', {'formulario': formulario})
 
 def prestamo_lista_usuario(request,usuario_id):
-    cliente = Cliente.objects.filter(usuario_id=usuario_id).get()
+    cliente = Cliente.objects.filter(id=usuario_id).get()
     prestamos = Prestamo.objects.select_related("libro")
     prestamos = prestamos.filter(cliente=cliente.id).all()
     return render(request, 'prestamo/lista.html',{"prestamos_mostrar":prestamos,"cliente":cliente})
