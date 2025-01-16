@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "Prueba Django",
             "type": "debugpy",
@@ -39,6 +40,45 @@
             "django": true,
             "autoStartBrowser": false,
             "program": "${workspaceFolder}/Tema_7_Sesiones_Permisos/manage.py"
+        },
+
+        {
+            "name": "Django Tema 8",
+            "type": "debugpy",
+            "request": "launch",
+            "args": [
+                "runserver"
+            ],
+            "django": true,
+            "autoStartBrowser": false,
+            "program": "${workspaceFolder}/Tema_8_Despliegue/manage.py"
+        }
+
+        , 
+        
+        {
+            "name": "Django Tema 9 API",
+            "type": "debugpy",
+            "request": "launch",
+            "args": [
+                "runserver",
+                "8081"
+            ],
+            "django": true,
+            "autoStartBrowser": false,
+            "program": "${workspaceFolder}/Tema_9_API_REST/manage.py"
+        },
+
+        {
+            "name": "Django Tema 9 Cliente",
+            "type": "debugpy",
+            "request": "launch",
+            "args": [
+                "runserver"
+            ],
+            "django": true,
+            "autoStartBrowser": false,
+            "program": "${workspaceFolder}/Tema_9_CLIENTE_API/manage.py"
         }
 
     ]

@@ -1,0 +1,12 @@
+{% extends "estructura/principal.html" %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<form action = "{% url 'libro_create' %}" method = "post"> 
+    
+    {% csrf_token %} 
+    {{ formulario|crispy }} 
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form> 
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "estructura/principal.html" %}
+
+{% block contenido %}
+<form action = "{% url 'libro_create' %}" method = "post"> 
+    
+    {% csrf_token %} 
+    {{ formulario.as_p }} 
+    <button type="submit">Enviar</button>
+</form> 
+
+
+{% endblock %}

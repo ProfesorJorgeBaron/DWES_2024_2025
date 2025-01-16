@@ -1,12 +1,13 @@
 {% extends "estructura/principal.html" %}
 
 {% block contenido %}
-<form action = "" method = "post"> 
+<form action = "{% url 'prestamo_crear' %}" method = "post"> 
     
-     {% load django_bootstrap5 %}
+    {% load bootstrap5 %}
     {% csrf_token %} 
-    {% bootstrap_form formulario %}         
-
+    <div class="mb-4">
+        {% bootstrap_form formulario %}         
+    </div>
     {% bootstrap_button "Enviar" button_type="submit" button_class="btn-primary" %}
 </form>
 {% endblock %}

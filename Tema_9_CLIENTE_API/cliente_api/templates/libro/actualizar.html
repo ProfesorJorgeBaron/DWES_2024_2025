@@ -1,0 +1,48 @@
+{% extends "estructura/principal.html" %}
+
+{% block contenido %}
+
+{% load bootstrap5 %}
+<form action = "{% url 'libro_editar' libro.id %}" method = "post"> 
+    
+    {% csrf_token %} 
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.nombre show_label=True %}
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.descripcion show_label=True %}
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.idioma show_label=True %}
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.fecha_publicacion show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.fecha_publicacion.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>      
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.biblioteca show_label=True %}
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.autores show_label=True %}
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.categorias show_label=True %}
+    </div>
+
+    {% bootstrap_button "Enviar" button_type="submit" button_class="btn-primary" %}
+
+</form> 
+
+
+{% endblock %}

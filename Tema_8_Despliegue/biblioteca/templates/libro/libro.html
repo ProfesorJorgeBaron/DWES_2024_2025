@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'libro_mostrar' libro.id  %}"> {{ libro.nombre|capfirst }}</a></h5>
+        <h6 class="card-subtitle mb-2 text-muted">Biblioteca {{ libro.biblioteca.nombre }}</h6>
+        <p class="card-text">Fecha Publicacion: {{ libro.fecha_publicacion|date:"d-m-Y" }}</p>
+        <p class="card-text">Idioma: {{ libro.get_idioma_display }}</p>
+        <p class="card-text">{{ libro.descripcion }}</p>
+        <div>
+            <p class="card-text" >Autores</p>
+            <ul>
+                {% for autor in libro.autores.all %}
+                    <li class="card-text" >{{ autor.nombre }}</li>
+                {% endfor%}
+            </ul>
+        </div>
+        {% load bootstrap_icons %}
+        <div class="row btn-group">
+            <div class="mb-2">
+                <button type="button" 
+                        class="btn btn-outline-primary"> 
+                        <a href="{% url 'libro_editar' libro.id %}" ><span>{% bs_icon 'pencil' %}</span></a>
+                </button>
+            </div>
+            <div class="mb-2">
+                <form action = "{% url 'libro_eliminar' libro.id %}" method = "post"> 
+                    {% csrf_token %}
+                    <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+                        <span>{% bs_icon 'trash' %}</span>
+                    </button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

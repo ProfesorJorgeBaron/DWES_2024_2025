@@ -153,6 +153,8 @@ class BusquedaAvanzadaLibroForm(forms.Form):
     
     textoBusqueda = forms.CharField(required=False)
     
+    textoCategoria = forms.CharField(required=False)
+    
   
     idiomas = forms.MultipleChoiceField(choices=Libro.IDIOMAS,
                                 required=False,
@@ -177,13 +179,15 @@ class BusquedaAvanzadaLibroForm(forms.Form):
         
         #Obtenemos los campos 
         textoBusqueda = self.cleaned_data.get('textoBusqueda')
+        textoCategoria = self.cleaned_data.get('textoCategoria')
         idiomas = self.cleaned_data.get('idiomas')
         fecha_desde = self.cleaned_data.get('fecha_desde')
         fecha_hasta = self.cleaned_data.get('fecha_hasta')
            
         #Controlamos los campos
         #Ningún campo es obligatorio, pero al menos debe introducir un valor en alguno para buscar
-        if(textoBusqueda == "" 
+        if(textoBusqueda == ""
+           and textoCategoria == ""
            and len(idiomas) == 0
            and fecha_desde is None
            and fecha_hasta is None
@@ -209,16 +213,10 @@ class BusquedaAvanzadaLibroForm(forms.Form):
 
 class RegistroForm(UserCreationForm): 
     roles = (
-                                ("","NINGUNO"),
                                 (Usuario.CLIENTE, 'cliente'),
                                 (Usuario.BIBLIOTECARIO, 'bibliotecario'),
             )   
-    
-    ciudad = forms.CharField(required=False)
-    
-    rol = forms.ChoiceField(choices=roles)
-    
-    
+    rol = forms.ChoiceField(choices=roles)  
     class Meta:
         model = Usuario
         fields = ('username', 'email', 'password1', 'password2','rol')

@@ -1,0 +1,50 @@
+{% load bootstrap_icons %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{% url 'libro_mostrar' libro.id  %}"> {{ libro.nombre }}</a>
+            <div class="mb-2">
+                <button type="button" 
+                        class="btn btn-outline-primary"> 
+                        <a href="{% url 'libro_editar_nombre' libro.id %}" ><span>{% bs_icon 'pencil' %}</span></a>
+                </button>
+            </div>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">Biblioteca {{ libro.biblioteca.nombre }}</h6>
+        <p class="card-text">Fecha Publicacion: {{ libro.fecha_publicacion }}</p>
+        <p class="card-text">Idioma: {{ libro.idioma }}</p>
+        <p class="card-text">{{ libro.descripcion }}</p>
+        <div>
+            <p class="card-text" >Autores</p>
+            <ul>
+                {% for autor in libro.autores %}
+                    <li class="card-text" >{{ autor.nombre }}</li>
+                {% endfor%}
+            </ul>
+        </div>
+        <div>
+            <p class="card-text" >Categorias</p>
+            <ul>
+                {% for libro_categoria in libro.categorias %}
+                    <li class="card-text" >{{ libro_categoria.categoria.categoria }}</li>
+                {% endfor%}
+            </ul>
+        </div>
+        <div class="row btn-group">
+            <div class="mb-2">
+                <button type="button" 
+                        class="btn btn-outline-primary"> 
+                        <a href="{% url 'libro_editar' libro.id %}" ><span>{% bs_icon 'pencil' %}</span></a>
+                </button>
+            </div>
+            <div class="mb-2">
+                <form action = "{% url 'libro_eliminar' libro.id %}" method = "post"> 
+                    {% csrf_token %}
+                    <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+                        <span>{% bs_icon 'trash' %}</span>
+                    </button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
