@@ -2,7 +2,7 @@
 
 {% block contenido %}
 
-{% load bootstrap5 %}
+{% load django_bootstrap5 %}
 <form action = "{% url 'libro_editar' libro.id %}" method = "post"> 
     
     {% csrf_token %} 

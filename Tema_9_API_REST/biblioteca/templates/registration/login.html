@@ -3,7 +3,7 @@
 {% block contenido %}
 <form action = "{% url 'login' %}" method = "post"> 
     
-    {% load bootstrap5 %}
+    {% load django_bootstrap5 %}
     {% csrf_token %} 
     {% bootstrap_form form %}         
 

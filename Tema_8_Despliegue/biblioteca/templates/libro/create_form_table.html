@@ -1,7 +1,7 @@
 {% extends "estructura/principal.html" %}
 
 {% block contenido %}
-{% load bootstrap5 %}
+{% load django_bootstrap5 %}
 <form action = "{% url 'libro_create' %}" method = "post"> 
     
     {% csrf_token %} 

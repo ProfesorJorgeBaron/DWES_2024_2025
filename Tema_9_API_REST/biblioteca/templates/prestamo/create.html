@@ -3,7 +3,7 @@
 {% block contenido %}
 <form action = "{% url 'prestamo_crear' %}" method = "post"> 
     
-    {% load bootstrap5 %}
+    {% load django_bootstrap5 %}
     {% csrf_token %} 
     <div class="mb-4">
         {% bootstrap_form formulario %}         

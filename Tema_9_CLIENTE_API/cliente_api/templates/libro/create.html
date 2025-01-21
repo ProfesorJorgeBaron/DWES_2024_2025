@@ -3,7 +3,7 @@
 {% block contenido %}
 <form action = "{% url 'libro_crear' %}" method = "post" enctype="multipart/form-data"> 
     
-    {% load bootstrap5 %}
+    {% load django_bootstrap5 %}
     {% csrf_token %} 
     
     <div class="mb-4">

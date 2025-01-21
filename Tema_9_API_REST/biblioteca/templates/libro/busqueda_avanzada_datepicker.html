@@ -8,7 +8,7 @@
 
 {% block contenido %}
 {{ formulario.media }}
-{% load bootstrap5 %}
+{% load django_bootstrap5 %}
     <form action = "{% url 'libro_buscar_avanzado' %}" method = "GET"> 
         
         {% csrf_token %}
