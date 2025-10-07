@@ -44,7 +44,9 @@ class Cliente(models.Model):
                                     related_name="libros_prestamo")
     libros_preferidos = models.ForeignKey(Libro,
                                           on_delete = models.CASCADE,
-                                          related_name="libros_preferidos")
+                                          related_name="libros_preferidos",
+                                          null=True
+                                          )
  
     
 class DatosCliente(models.Model):
