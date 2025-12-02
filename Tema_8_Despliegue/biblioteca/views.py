@@ -66,8 +66,8 @@ def libro_create(request):
     if request.method == "POST":
         datosFormulario = request.POST
     
-    #formulario = LibroForm(datosFormulario)
-    formulario = LibroModelForm(datosFormulario)
+    formulario = LibroForm(datosFormulario)
+    #formulario = LibroModelForm(datosFormulario)
     """formularioFactory = modelform_factory(Libro, 
                                             fields='__all__',
                                             widgets = {
@@ -77,8 +77,8 @@ def libro_create(request):
     
     if (request.method == "POST"):
         # Llamamos la función que creará el libro
-        #libro_creado = crear_libro_generico(formulario)
-        libro_creado = crear_libro_modelo(formulario)
+        libro_creado = crear_libro_generico(formulario)
+        #libro_creado = crear_libro_modelo(formulario)
         if(libro_creado):
              messages.success(request, 'Se ha creado el libro'+formulario.cleaned_data.get('nombre')+" correctamente")
              return redirect("libro_lista")
@@ -158,7 +158,6 @@ def libro_buscar_avanzado(request):
             
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
             
-            texto = formulario.cleaned_data.get('textoBusqueda')
             QSlibros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
             
             #obtenemos los filtros

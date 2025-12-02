@@ -5,7 +5,9 @@
         {% block link_css %}
         {% endblock%}
         <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-        
+        {% block cabecera_extra %}
+        {%endblock%}
+         <script src="{% static  'javascript/tutorial.js'%}"></script>
     </head>
     <body>
     

@@ -31,18 +31,19 @@ def libro_create_sencillo(request):
 
 #Esta funcion es igual que la anterior pero con el
 # código estructurado de otra forma
-def libro_create_sencillo2(request):
+def libro_create_sencillo2(request,id_producto):
+    lola = Libro.objects.get(id=id_producto)
+    
+   
     if request.method == "POST":
-        formulario = LibroModelForm(request.POST)
+        formulario = LibroModelForm(request.POST,instance=lola)
         if formulario.is_valid():
-            try:
-                # Guarda el libro en la base de datos
+            try:  
                 formulario.save()
-                return redirect("libro_lista")
             except Exception as error:
                 print(error)
     else:
-        formulario = LibroModelForm()
+        formulario = LibroModelForm(instance=lola)
           
     return render(request, 'libro/create_Bootstrap_Library.html',{"formulario":formulario})  
   

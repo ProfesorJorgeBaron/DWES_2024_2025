@@ -115,12 +115,12 @@ class LibroModelForm(ModelForm):
  
         #Comprobamos que no exista un libro con ese nombre
         libroNombre = Libro.objects.filter(nombre=nombre).first()
-        if(not libroNombre is None
+        if(not (libroNombre is None
+             or (not self.instance is None and libroNombre.id == self.instance.id)
+                )
            ):
-             if(not self.instance is None and libroNombre.id == self.instance.id):
-                 pass
-             else:
                 self.add_error('nombre','Ya existe un libro con ese nombre')
+
 
         #Comprobamos que el campo descripción no tenga menos de 10 caracteres        
         if len(descripcion) < 10:
@@ -128,7 +128,7 @@ class LibroModelForm(ModelForm):
         
         #Comprobamos que la fecha de publicación sea mayor que hoy
         fechaHoy = date.today()
-        if fechaHoy > fecha_publicacion :
+        if fechaHoy <= fecha_publicacion :
              self.add_error('fecha_publicacion','La fecha de publicacion debe ser mayor a Hoy')
         
         #Comprobamos que el idioma no pueda ser en Francés si se ha seleccionado la Biblioteca de la Universidad de Sevilla

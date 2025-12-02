@@ -10,13 +10,11 @@ def index(request):
 
 #Una url que me muestre todos los libros y sus datos, incluido los relacionados
 def listar_libros(request):
-    libros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
-    libros = libros.all()
-    """libros = (Libro.objects.raw("SELECT * FROM biblioteca_libro l "
-                               + " JOIN biblioteca_biblioteca b ON l.biblioteca_id = b.id " 
-                               + " JOIN biblioteca_libro_autores la ON la.libro_id = l.id ")
-             )
-    """
+    libros = Libro.objects.select_related("biblioteca").prefetch_related("autores").all()
+    # libros = (Libro.objects.raw("SELECT * FROM biblioteca_libro l ")
+             #)
+    
+
     return render(request, 'libro/lista.html',{"libros_mostrar":libros})
 
 #Una url que me muestre información sobre cada libro
@@ -36,7 +34,7 @@ def dame_libro(request,id_libro):
 #Una url que me muestre los libros de un año y mes concreto
 def dame_libros_fecha(request,anyo_libro,mes_libro):
     libros = Libro.objects.prefetch_related("autores").select_related("biblioteca")
-    libros = libros.filter(fecha_publicacion__year=anyo_libro,fecha_publicacion__month=mes_libro)
+    libros = libros.filter(fecha_publicacion__year=anyo_libro,fecha_publicacion__month=mes_libro).all()
     
     """libros = (Libro.objects.raw("SELECT * FROM biblioteca_libro l "
                                + " JOIN biblioteca_libro_autores la ON la.libro_id = l.id "
@@ -46,13 +44,13 @@ def dame_libros_fecha(request,anyo_libro,mes_libro):
                                ,[str(anyo_libro),str(mes_libro)])
              )
     """
-     
+    libros = libros.all()
     return render(request, 'libro/lista.html',{"libros_mostrar":libros})
 
 #Una url que me muestre los libros que tienen el idioma del libro o español ordenados por fecha de publicación
 def dame_libros_idioma(request,idioma):
     libros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
-    libros = libros.filter(Q(idioma=idioma) | Q(idioma="ES") ).order_by("fecha_publicacion")
+    libros = libros.filter(Q(idioma=idioma) | Q(idioma="ES") ).order_by("fecha_publicacion").all()
     
     """libros = (Libro.objects.raw("SELECT * FROM biblioteca_libro l "
                                + " JOIN biblioteca_biblioteca b ON l.biblioteca_id = b.id "   
@@ -65,19 +63,19 @@ def dame_libros_idioma(request,idioma):
     """
     
     
-    return render(request, 'libro/lista.html',{"libros_mostrar":libros})
+    return render(request, 'libro/lista.html',{"libros_mostrar":libros.all})
 
 #Una url que me muestre los libros de una biblioteca que contenga un texto en concreto.
 def dame_libros_biblioteca(request,id_biblioteca,texto_libro):
     libros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
-    libros = libros.filter(biblioteca=id_biblioteca).filter(descripcion__contains=texto_libro).order_by("-nombre")
+    libros = libros.filter(biblioteca=id_biblioteca).filter(descripcion__contains=texto_libro).order_by("-nombre").all()
     
     """texto_buscar = "'%"+texto_libro+"%'"
     libros = (Libro.objects.raw("SELECT * FROM biblioteca_libro l "
                                + " JOIN biblioteca_biblioteca b ON l.biblioteca_id = b.id "   
                                + " JOIN biblioteca_libro_autores la ON la.libro_id = l.id "
                                + " WHERE b.id = %s "
-                               + " AND l.descripcion LIKE %s "
+                               + " AND l.descripcion LIKE '%s%' "
                                + " ORDER BY l.nombre DESC "
                                ,[id_biblioteca,texto_buscar])
                )
@@ -99,7 +97,7 @@ def dame_ultimo_cliente_libro(request,libro):
 #Una url que muestre los libros que nunca han sido prestados.
 def libros_no_prestados(request):
     libros = Libro.objects.select_related("biblioteca").prefetch_related("autores")
-    libros = libros.filter(prestamo=None)
+    libros = libros.filter(prestamo=None).all()
     
     """libros = (Libro.objects.raw("SELECT * FROM biblioteca_libro l "
                                + " JOIN biblioteca_biblioteca b ON l.biblioteca_id = b.id "   

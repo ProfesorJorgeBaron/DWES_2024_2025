@@ -39,7 +39,7 @@ class Command(BaseCommand):
                 fecha_publicacion=fake.date_between(start_date='-10y', end_date='today'),
                 biblioteca=random.choice(bibliotecas)
             )
-            # Añadir autores (1 a 3 por libro)
+            # Añadir autores 
             l.autores.set(random.sample(autores, random.randint(1, 3)))
             libros.append(l)
 

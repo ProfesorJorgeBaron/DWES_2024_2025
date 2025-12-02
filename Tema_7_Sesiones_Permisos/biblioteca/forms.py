@@ -90,6 +90,7 @@ class LibroModelForm(ModelForm):
         fields = ['nombre','descripcion','fecha_publicacion','idioma','biblioteca','autores','fecha_actualizacion']
         labels = {
             "nombre": ("Nombre del Libro"),
+            "descripcion" : ("Descripcion del producto")
         }
         help_texts = {
             "nombre": ("200 caracteres como máximo"),
